@@ -179,3 +179,170 @@ INSERT INTO OrderDetails (OrderID, ProductID, Quantity, Price) VALUES
 
 ```
 
+
+
+
+
+1. SELECT
+Use Case: Retrieve all product names and prices.
+
+```
+SELECT Name, Price FROM Products;
+```
+
+
+2. SELECT DISTINCT
+Use Case: List all unique cities where customers live to plan regional marketing campaigns.
+
+
+```
+SELECT DISTINCT City FROM Customers;
+```
+
+
+3. WHERE
+Use Case: Find products that are priced over $100 for a premium products report.
+
+```
+SELECT Name, Price FROM Products WHERE Price > 100;
+```
+
+
+4. ORDER BY
+Use Case: Order customers by name alphabetically for a customer directory.
+
+```
+SELECT Name, Email FROM Customers ORDER BY Name;
+```
+
+
+5. GROUP BY
+Use Case: Count how many products are in each category for inventory summary.
+
+
+```
+SELECT CategoryID, COUNT(*) AS ProductCount FROM Products GROUP BY CategoryID;
+```
+
+6. LIMIT
+Use Case: Get the top 5 most expensive products for a featured products section.
+
+
+```
+SELECT Name, Price FROM Products ORDER BY Price DESC LIMIT 5;
+```
+
+7. MIN and MAX
+Use Case: Determine the cheapest and most expensive product prices for market analysis.
+
+
+```
+SELECT MIN(Price) AS CheapestProduct, MAX(Price) AS MostExpensiveProduct FROM Products;
+```
+
+
+8. COUNT
+Use Case: Find out how many orders have been made to assess business activity.
+
+
+```
+SELECT COUNT(*) AS TotalOrders FROM Orders;
+```
+
+
+9. SUM and AVERAGE
+Use Case: Calculate the total and average sales amount for financial reporting.
+
+
+```
+SELECT SUM(Price * Quantity) AS TotalSales, AVG(Price * Quantity) AS AverageSale FROM OrderDetails;
+```
+
+
+10. LIKE
+Use Case: Search for all customers whose name contains "John" for a targeted email campaign.
+
+
+```
+SELECT Name, Email FROM Customers WHERE Name LIKE '%John%';
+```
+
+
+11. IN
+Use Case: Select orders that were placed in either September or October for a seasonal sales analysis.
+
+
+```
+SELECT OrderID, OrderDate FROM Orders WHERE MONTH(OrderDate) IN (9, 10);
+```
+
+
+12. BETWEEN
+Use Case: Identify products priced between $50 and $100 for a mid-range product promotion.
+
+
+```
+SELECT Name, Price FROM Products WHERE Price BETWEEN 50 AND 100;
+```
+
+
+13. AS (Alias)
+Use Case: Simplify column names in output for better readability in reports.
+
+
+```
+SELECT Name AS ProductName, Price AS ProductPrice FROM Products;
+```
+
+
+14. Joins and Types
+INNER JOIN
+Use Case: Match each order with its customer name for order processing.
+
+```
+SELECT Orders.OrderID, Customers.Name FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
+
+
+LEFT JOIN
+Use Case: List all customers and their orders, including those who haven't made any orders.
+
+
+```
+SELECT Customers.Name, Orders.OrderID FROM Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+```
+
+
+15. UNION
+Use Case: Combine names of all products and categories into one list for a comprehensive catalog.
+
+
+```
+SELECT Name FROM Products
+UNION
+SELECT CategoryName AS Name FROM Categories;
+```
+
+
+16. Removing NULL Values
+Use Case: Ensure no products are listed without a price for a complete pricing catalog.
+
+
+```
+SELECT Name, Price FROM Products WHERE Price IS NOT NULL;
+```
+
+
+17. Statistics (Mean, Median, Mode)
+MySQL doesn't directly support median or mode calculations in a single function like mean (average). However, you can calculate the average easily:
+
+Use Case for Mean: Calculate the average price of all products.
+
+
+```
+SELECT AVG(Price) AS AveragePrice FROM Products;
+```
+
+
+
+For median and mode, you'd typically need more complex queries or to process the data outside of MySQL, such as using application logic in Python or R.
